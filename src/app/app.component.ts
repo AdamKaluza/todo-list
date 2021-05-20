@@ -8,6 +8,8 @@ import { Task } from './task';
 })
 export class AppComponent {
   // @ts-ignore
+  taskName: string;
+  // @ts-ignore
   config: { [key: string] } = null;
   tasks: Task[] = [
     {
@@ -38,5 +40,19 @@ export class AppComponent {
   }
   clearTasks() {
     this.tasks = [];
+  }
+  onKeyUp(event: KeyboardEvent) {
+    const target = event.target as HTMLInputElement;
+    this.taskName = target.value;
+    console.log(target.value);
+  }
+
+  createTask() {
+    const task: Task = {
+      name: this.taskName,
+      deadline: '2020-02-02',
+      done: false,
+    };
+    this.tasks.push(task);
   }
 }
