@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import {Task} from "./task";
+import { Task } from './task';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  config: { [key: string]: string | Date } = null;
+  // @ts-ignore
+  config: { [key: string] } = null;
   tasks: Task[] = [
     {
       name: 'Siłownia',
@@ -27,12 +28,15 @@ export class AppComponent {
   ];
 
   constructor() {
-    setTimeout(() => {this.config = {
-      title: 'Lista zadań',
-      footer: '© Lista zadań, zbudowana w Angularze.',
-      date: new Date(),
-    };
-    },500);
-
+    setTimeout(() => {
+      this.config = {
+        title: 'Lista zadań',
+        footer: '© Lista zadań zbudowana w Angularze.',
+        date: new Date(),
+      };
+    }, 500);
+  }
+  clearTasks() {
+    this.tasks = [];
   }
 }
