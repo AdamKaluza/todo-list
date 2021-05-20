@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Task} from "./task";
 
 @Component({
   selector: 'app-root',
@@ -6,10 +7,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Lista zadań';
+  config: { [key: string]: string | Date } = null;
+  tasks: Task[] = [{
 
 
-  get footer(): string{
-    return '2020 © Lista zadań,All rights reserved.';
+
+  }]
+
+  constructor() {
+    setTimeout(() => {this.config = {
+      title: 'Lista zadań',
+      footer: '© Lista zadań, zbudowana w Angularze.',
+      date: new Date()
+    };
+    },500);
+
   }
 }
