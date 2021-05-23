@@ -30,6 +30,7 @@ export class AppComponent {
     },
   ];
 
+
   constructor() {
     setTimeout(() => {
       this.config = {
@@ -56,4 +57,16 @@ export class AppComponent {
   switchEditMode() {
     this.editMode = !this.editMode;
   }
+  markTaskAsDone(task: Task) {
+    task.done = true;
+  }
+
+  deleteTask(task: Task){
+    this.tasks = this.tasks.filter(e => e !== task);
+  }
+
+  private sortTasks() {
+
+  }
 }
+
