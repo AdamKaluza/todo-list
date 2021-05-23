@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Task } from './task';
+import {Component} from '@angular/core';
+import {Task} from './task';
 
 @Component({
   selector: 'app-root',
@@ -39,7 +39,9 @@ export class AppComponent {
         date: new Date(),
       };
     }, 500);
+    this.sortTasks();
   }
+
   clearTasks() {
     this.tasks = [];
   }
@@ -51,22 +53,28 @@ export class AppComponent {
       done: false,
     };
     this.tasks.push(task);
-    this.taskDate ='';
-    this.taskName ='';
+    this.taskDate = '';
+    this.taskName = '';
+    this.sortTasks();
   }
+
   switchEditMode() {
     this.editMode = !this.editMode;
   }
+
   markTaskAsDone(task: Task) {
     task.done = true;
+    this.sortTasks();
   }
 
-  deleteTask(task: Task){
+  deleteTask(task: Task) {
     this.tasks = this.tasks.filter(e => e !== task);
+    this.sortTasks();
   }
 
   private sortTasks() {
-
+    this.tasks = this.tasks.sort((a: Task, b: Task) =>
+      a.done === b.done ? 0 : a.done ? 1 : -1);
   }
 }
 
