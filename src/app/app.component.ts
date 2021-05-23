@@ -7,6 +7,9 @@ import { Task } from './task';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  editMode = false;
+  taskName = 'Sugerowane zadanie codziennie: odkurzanie';
+  taskDate = '';
   // @ts-ignore
   config: { [key: string] } = null;
   tasks: Task[] = [
@@ -18,7 +21,7 @@ export class AppComponent {
     {
       name: 'Nauka Angulara',
       deadline: '2020-01-03',
-      done: false,
+      done: true,
     },
     {
       name: 'Sprzątanie kuwety',
@@ -40,12 +43,17 @@ export class AppComponent {
     this.tasks = [];
   }
 
-  createTask(name: string,deadline: string ) {
+  createTask() {
     const task: Task = {
-      name,
-      deadline,
+      name: this.taskName,
+      deadline: this.taskDate,
       done: false,
     };
     this.tasks.push(task);
+    this.taskDate ='';
+    this.taskName ='';
+  }
+  switchEditMode() {
+    this.editMode = !this.editMode;
   }
 }
